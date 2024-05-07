@@ -23,28 +23,28 @@ func _process(delta):
 	
 func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
-	
+
 	if not is_jumping:
 		if direction:
 			velocity = direction * SPEED
 		else:
 			velocity = Vector2.ZERO
-		
-	if Input.is_action_just_pressed("jump") and not is_jumping:
-		jump_start_height = position.y
-		prints("jump start height:",jump_start_height)
-		is_jumping = true
-		velocity.y += JUMP_VELOCITY
-		
-	if is_jumping:
-		velocity.y += GRAVITY * delta
-		if position.y <= jump_start_height - 1:
-			#prints("now can stop falling",position.y,jump_start_height)
-			can_stop_falling = true
-		if can_stop_falling and position.y >= jump_start_height:
-			position.y = jump_start_height
-			is_jumping = false
-			can_stop_falling = false
+#
+#	if Input.is_action_just_pressed("jump") and not is_jumping:
+#		jump_start_height = position.y
+#		prints("jump start height:",jump_start_height)
+#		is_jumping = true
+#		velocity.y += JUMP_VELOCITY
+#
+#	if is_jumping:
+#		velocity.y += GRAVITY * delta
+#		if position.y <= jump_start_height - 1:
+#			#prints("now can stop falling",position.y,jump_start_height)
+#			can_stop_falling = true
+#		if can_stop_falling and position.y >= jump_start_height:
+#			position.y = jump_start_height
+#			is_jumping = false
+#			can_stop_falling = false
 	move_and_slide()
 	
 func update_animation_parameters(direction: Vector2):
