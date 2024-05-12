@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var SPEED: float = 100.0
+@export var CONTROL_MOVEMENT = true
 const JUMP_VELOCITY = -200.0
 @onready var animation_tree: AnimationTree = $AnimationTree
 var direction: Vector2
@@ -22,7 +23,8 @@ func _process(delta):
 	update_animation_parameters(direction)
 	
 func _physics_process(delta):
-	direction = Input.get_vector("left","right","up","down").normalized()
+	if CONTROL_MOVEMENT:
+		direction = Input.get_vector("left","right","up","down").normalized()
 
 	if not is_jumping:
 		if direction:
