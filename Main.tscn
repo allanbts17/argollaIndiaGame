@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3807pypee8e2"]
+[gd_scene load_steps=4 format=3 uid="uid://d3807pypee8e2"]
 
 [ext_resource type="PackedScene" uid="uid://qcawd6xkb8pl" path="res://player.tscn" id="1_1d3cn"]
+[ext_resource type="Script" path="res://Main.gd" id="1_5p8wu"]
+[ext_resource type="PackedScene" uid="uid://2rknmumi8xr8" path="res://components/trackInput/trackInput.tscn" id="1_u73vk"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
+script = ExtResource("1_5p8wu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(287, 158)
-zoom = Vector2(2, 2)
+[node name="trackInput" parent="." instance=ExtResource("1_u73vk")]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_1d3cn")]
+[node name="player" parent="." instance=ExtResource("1_1d3cn")]
+CONTROL_MOVEMENT = false

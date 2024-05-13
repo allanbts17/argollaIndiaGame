@@ -1,33 +1,52 @@
-extends Node2D
 
-var points = []
+class_name TrackInput extends Node2D
+
+var points: Array = []
 var startTrack = false
 var line2D: Line2D
-# Called when the node enters the scene tree for the first time.
+@export var debug = false
+
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-
 func _input(event):
-	print(event)
+	if debug:
+		print(event)
+		
+	if getOS() == "Mobile":
+		touchInput(event)
+	else:
+		mouseInput(event)
+	
+func getOS():
+	match OS.get_name():
+		"Windows":
+			return "Desktop"
+		"macOS":
+			return "Desktop"
+		"Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
+			return "Desktop"
+		"Android":
+			return "Mobile"
+		"iOS":
+			return "Mobile"
+		"Web":
+			return "Web"
+
+
+func touchInput(event):
 	if event is InputEventScreenDrag:
 		if startTrack:
 			line2D.add_point(event.position)
+			points.append(event.position)
 			startTrack = true
-
 	if event is InputEventScreenTouch:
 		startTrack = event.pressed
 		if startTrack:
 			line2D = Line2D.new()
 			line2D.width = 3
 			add_child(line2D)
-	
+			points = []
 	
 func mouseInput(event):
 	if event is InputEventMouseMotion:
@@ -36,7 +55,9 @@ func mouseInput(event):
 				line2D = Line2D.new()
 				line2D.width = 3
 				add_child(line2D)
+				points = []
 			line2D.add_point(event.position)
+			points.append(event.position)
 			startTrack = true
 			
 		elif event.pressure == 0.0 and startTrack:

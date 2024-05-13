@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2rknmumi8xr8"]
+
+[ext_resource type="Script" path="res://components/trackInput/trackInput.gd" id="1_3ujt5"]
+
+[node name="trackInput" type="Node2D"]
+script = ExtResource("1_3ujt5")

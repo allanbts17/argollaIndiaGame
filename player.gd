@@ -1,5 +1,4 @@
-extends CharacterBody2D
-
+class_name Player extends CharacterBody2D
 
 @export var SPEED: float = 100.0
 @export var CONTROL_MOVEMENT = true
@@ -25,6 +24,7 @@ func _process(delta):
 func _physics_process(delta):
 	if CONTROL_MOVEMENT:
 		direction = Input.get_vector("left","right","up","down").normalized()
+	#print(direction)
 
 	if not is_jumping:
 		if direction:
