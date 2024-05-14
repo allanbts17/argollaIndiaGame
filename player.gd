@@ -9,6 +9,9 @@ const GRAVITY = 500
 var is_jumping = false
 var can_stop_falling = false
 var jump_start_height = 0
+var index = 0
+
+@onready var trackInput: TrackInput = get_parent().get_node("trackInput")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 func _ready():
@@ -22,6 +25,7 @@ func _process(delta):
 	update_animation_parameters(direction)
 	
 func _physics_process(delta):
+	tracked_movement()
 	if CONTROL_MOVEMENT:
 		direction = Input.get_vector("left","right","up","down").normalized()
 	#print(direction)
@@ -48,6 +52,25 @@ func _physics_process(delta):
 #			is_jumping = false
 #			can_stop_falling = false
 	move_and_slide()
+	
+func tracked_movement():
+	if not trackInput.startTrack and trackInput.points.size() > 0 and index < trackInput.points.size():
+		trackInput.points = Utils.reduce(trackInput.points,0.3)
+		# Verificar si hemos alcanzado el punto actual
+		if position.distance_to(trackInput.points[index]) < 5 and index < trackInput.points.size():
+			index += 1
+		# Si hemos llegado al final del trayecto, reiniciamos
+		if index >= trackInput.points.size():
+			direction = Vector2.ZERO
+			index = 0
+			trackInput.removeTrack()
+			
+			return
+		# Calcular la dirección hacia el siguiente punto
+		var dir: Vector2
+		prints(index,trackInput.points.size())
+		dir = (trackInput.points[index] - position)
+		direction = dir.normalized()
 	
 func update_animation_parameters(direction: Vector2):
 	direction = direction*Vector2(1,-1)

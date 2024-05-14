@@ -50,6 +50,7 @@ func touchInput(event):
 	
 func mouseInput(event):
 	if event is InputEventMouseMotion:
+		#Detecta el pressed
 		if event.pressure == 1.0:
 			if not startTrack:
 				line2D = Line2D.new()
@@ -59,6 +60,12 @@ func mouseInput(event):
 			line2D.add_point(event.position)
 			points.append(event.position)
 			startTrack = true
-			
+		#Detecta el release
 		elif event.pressure == 0.0 and startTrack:
 			startTrack = false
+			
+func removeTrack():
+	points = []
+	startTrack = false
+	#line2D: Line2D
+	
