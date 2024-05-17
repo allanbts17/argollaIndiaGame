@@ -1,6 +1,7 @@
-[gd_scene load_steps=66 format=3 uid="uid://qcawd6xkb8pl"]
+[gd_scene load_steps=68 format=3 uid="uid://qcawd6xkb8pl"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6qjsn"]
+[ext_resource type="Script" path="res://LineFollow.gd" id="2_sfi01"]
 [ext_resource type="Texture2D" uid="uid://gb84slcxcolu" path="res://assets/shadow.png" id="2_x3q64"]
 [ext_resource type="Script" path="res://shadow.gd" id="3_cfbpn"]
 [ext_resource type="Texture2D" uid="uid://cwin25otg4m48" path="res://assets/char.png" id="3_vj846"]
@@ -596,9 +597,13 @@ states/walk/node = SubResource("AnimationNodeBlendSpace2D_sqav4")
 states/walk/position = Vector2(620, 193)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ebmtc"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_fos1u"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_1yprf"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_a7hdw"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_85ilt"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_gyeq0"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_12cf3")]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jrbyf"]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(287, 159)
 script = ExtResource("1_6qjsn")
+
+[node name="LineFollow" type="Node2D" parent="."]
+script = ExtResource("2_sfi01")
 
 [node name="shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 10)
@@ -633,3 +638,6 @@ parameters/conditions/is_stoping = false
 parameters/idle/blend_position = Vector2(0, 0)
 parameters/jump/blend_position = Vector2(0, -0.950893)
 parameters/walk/blend_position = Vector2(0.12527, -0.292576)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jrbyf")

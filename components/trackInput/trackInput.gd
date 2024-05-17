@@ -1,9 +1,8 @@
 
 class_name TrackInput extends Node2D
-
-var points: Array = []
 var startTrack = false
-var line2D: Line2D
+var linesDict = {}
+var line_count = 0
 @export var debug = false
 
 func _ready():
@@ -36,36 +35,53 @@ func getOS():
 
 func touchInput(event):
 	if event is InputEventScreenDrag:
-		if startTrack:
-			line2D.add_point(event.position)
-			points.append(event.position)
-			startTrack = true
+		advance(event.position)
 	if event is InputEventScreenTouch:
-		startTrack = event.pressed
-		if startTrack:
-			line2D = Line2D.new()
-			line2D.width = 3
-			add_child(line2D)
-			points = []
+		if  event.pressed:
+			initialize()
+			advance(event.position)
+		else:
+			end()
 	
 func mouseInput(event):
 	if event is InputEventMouseMotion:
 		#Detecta el pressed
 		if event.pressure == 1.0:
-			if not startTrack:
-				line2D = Line2D.new()
-				line2D.width = 3
-				add_child(line2D)
-				points = []
-			line2D.add_point(event.position)
-			points.append(event.position)
-			startTrack = true
+			initialize()
+			advance(event.position)
 		#Detecta el release
 		elif event.pressure == 0.0 and startTrack:
-			startTrack = false
+			end()
 			
-func removeTrack():
-	points = []
+			
+func initialize():
+	if not startTrack:
+				linesDict[line_count] = TrackLine.new()
+				linesDict[line_count].width = 3
+				linesDict[line_count].name = "line" + str(line_count)
+				add_child(linesDict[line_count])
+
+
+func advance(pos: Vector2):
+	linesDict[line_count].add_point(pos)
+	linesDict[line_count].track_points.append(pos)
+	startTrack = true
+	
+func end():
 	startTrack = false
+	linesDict[line_count].build_finished = true
+	
+	var execute = func(dict: Dictionary, line: TrackLine, lineKey: int):
+		if not line.movement_started:
+			removeTrack(lineKey)
+			
+	Utils.timer(0.2,execute,[linesDict,linesDict[line_count],line_count])
+	line_count += 1
+
+			
+func removeTrack(key):
+	linesDict.erase(key)
+	get_node("line" + str(key)).queue_free()
+	#startTrack = false
 	#line2D: Line2D
 	

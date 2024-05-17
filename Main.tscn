@@ -8,6 +8,20 @@
 script = ExtResource("1_5p8wu")
 
 [node name="trackInput" parent="." instance=ExtResource("1_u73vk")]
+debug = true
 
-[node name="player" parent="." instance=ExtResource("1_1d3cn")]
+[node name="player1" parent="." instance=ExtResource("1_1d3cn")]
+position = Vector2(374, 67)
+CONTROL_MOVEMENT = false
+
+[node name="player2" parent="." instance=ExtResource("1_1d3cn")]
+position = Vector2(188, 136)
+CONTROL_MOVEMENT = false
+
+[node name="player3" parent="." instance=ExtResource("1_1d3cn")]
+position = Vector2(379, 216)
+CONTROL_MOVEMENT = false
+
+[node name="player4" parent="." instance=ExtResource("1_1d3cn")]
+position = Vector2(226, 229)
 CONTROL_MOVEMENT = false

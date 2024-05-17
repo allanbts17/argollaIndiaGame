@@ -1,5 +1,11 @@
 extends Node
 
+	
+func timer(seconds: float, func_ref: Callable, args):
+	print("Inicio")
+	await get_tree().create_timer(seconds).timeout
+	func_ref.callv(args)
+
 
 func reduce(array: Array, reduction: float) -> Array:
 	var length = array.size()

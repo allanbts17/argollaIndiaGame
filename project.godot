@@ -19,6 +19,13 @@ config/icon="res://icon.svg"
 
 Utils="*res://utils.gd"
 
+[display]
+
+window/size/viewport_width=568
+window/size/viewport_height=320
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
