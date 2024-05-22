@@ -1,7 +1,10 @@
+@tool
 class_name Player extends CharacterBody2D
 
 @export var SPEED: float = 100.0
 @export var CONTROL_MOVEMENT = true
+@export_enum("Rojo", "Azul", "Verde","Neutro") var color := 3: set = set_property, get = get_property
+
 const JUMP_VELOCITY = -200.0
 @onready var animation_tree: AnimationTree = $AnimationTree
 var direction: Vector2
@@ -9,6 +12,21 @@ const GRAVITY = 500
 var is_jumping = false
 var can_stop_falling = false
 var jump_start_height = 0
+
+func set_property(_color):
+	print(_color)
+	color = _color
+	if _color == 0:
+		modulate = Color("ff0004")
+	elif _color == 1:
+		modulate = Color("3300ff")
+	elif _color == 2:
+		modulate = Color("00ff39")
+	elif _color == 3:
+		modulate = Color("ffffff")
+	
+func get_property():
+	return color
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 func _ready():
