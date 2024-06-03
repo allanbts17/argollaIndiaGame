@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3807pypee8e2"]
+[gd_scene load_steps=8 format=3 uid="uid://d3807pypee8e2"]
 
-[ext_resource type="PackedScene" uid="uid://qcawd6xkb8pl" path="res://player.tscn" id="1_1d3cn"]
+[ext_resource type="PackedScene" uid="uid://qcawd6xkb8pl" path="res://components/player/player.tscn" id="1_1d3cn"]
 [ext_resource type="Script" path="res://Main.gd" id="1_5p8wu"]
 [ext_resource type="PackedScene" uid="uid://2rknmumi8xr8" path="res://components/trackInput/trackInput.tscn" id="1_u73vk"]
 [ext_resource type="Texture2D" uid="uid://b27my1h8dw6dm" path="res://icon.svg" id="4_0sj6x"]
+[ext_resource type="Script" path="res://argolla.gd" id="4_k4qv5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1xtch"]
+radius = 69.9999
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q13m"]
+size = Vector2(123, 120)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_5p8wu")
@@ -11,27 +18,67 @@ script = ExtResource("1_5p8wu")
 [node name="trackInput" parent="." instance=ExtResource("1_u73vk")]
 
 [node name="player1" parent="." instance=ExtResource("1_1d3cn")]
-modulate = Color(1, 0, 0.0156863, 1)
-position = Vector2(374, 67)
+modulate = Color(0.2, 0, 1, 1)
+position = Vector2(406, 43)
+color = 1
 
 [node name="player2" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0.2, 0, 1, 1)
-position = Vector2(188, 136)
+position = Vector2(182, 95)
+has_ring = true
 
 [node name="player3" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0, 1, 0.223529, 1)
 position = Vector2(379, 216)
+teamId = 1
 
 [node name="player4" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0, 1, 0.223529, 1)
-position = Vector2(226, 229)
+position = Vector2(200.851, 235)
+teamId = 1
+
+[node name="player5" parent="." instance=ExtResource("1_1d3cn")]
+modulate = Color(0.2, 0, 1, 1)
+position = Vector2(95, 55)
+color = 1
+
+[node name="player6" parent="." instance=ExtResource("1_1d3cn")]
+modulate = Color(0.2, 0, 1, 1)
+position = Vector2(227, 181)
+color = 1
 
 [node name="argolla" type="Area2D" parent="."]
-position = Vector2(190, 140)
+position = Vector2(182, 95)
 scale = Vector2(0.1, 0.1)
+script = ExtResource("4_k4qv5")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="argolla"]
 texture = ExtResource("4_0sj6x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="argolla"]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("CircleShape2D_1xtch")
+
+[node name="ringCatcher1" type="Area2D" parent="."]
+position = Vector2(532, 161)
+scale = Vector2(0.6, 0.6)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ringCatcher1"]
+texture = ExtResource("4_0sj6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ringCatcher1"]
+shape = SubResource("RectangleShape2D_0q13m")
+
+[node name="ringCatcher2" type="Area2D" parent="."]
+position = Vector2(36, 161)
+scale = Vector2(0.6, 0.6)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ringCatcher2"]
+texture = ExtResource("4_0sj6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ringCatcher2"]
+shape = SubResource("RectangleShape2D_0q13m")

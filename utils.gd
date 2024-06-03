@@ -16,3 +16,18 @@ func reduce(array: Array, reduction: float) -> Array:
 	for index in range(0,length,step):
 		new_array.append(array[index])
 	return array
+	
+func wait(seconds: float):
+	await get_tree().create_timer(seconds).timeout
+	
+func randomNumber(min: int,max: int) -> int:
+	var rng = RandomNumberGenerator.new()
+	rng.seed = Time.get_time_dict_from_system()['second']
+	return rng.randi_range(min, max)
+
+		
+func randomNumberf(min: float,max: float) -> float:
+	var rng = RandomNumberGenerator.new()
+	rng.seed = Time.get_time_dict_from_system()['second']
+	return rng.randf_range(min, max)
+

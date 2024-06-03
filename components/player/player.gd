@@ -1,12 +1,19 @@
 @tool
-class_name Player extends CharacterBody2D
+class_name Player extends PlayerStats
 
 @export var SPEED: float = 100.0
-@export var CONTROL_MOVEMENT = true
+@export var CONTROL_MOVEMENT = false
+@export var teamId = 0
+@export var userControl = false
+@export var has_ring = false
 @export_enum("Rojo", "Azul", "Verde","Neutro") var color := 3: set = set_property, get = get_property
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var ring: Area2D = get_parent().get_node("argolla")
+@onready var stateMachine: StateMachine = get_node("StateMachine")
+@onready var passingState: PassingState = $StateMachine/PassingState
+
 
 const JUMP_VELOCITY = -200.0
-@onready var animation_tree: AnimationTree = $AnimationTree
 var direction: Vector2
 const GRAVITY = 500
 var is_jumping = false
@@ -34,6 +41,11 @@ func _ready():
 	animation_tree["parameters/conditions/is_moving"] = false
 	animation_tree["parameters/conditions/is_stoping"] = true
 	animation_tree["parameters/idle/blend_position"] = Vector2.UP
+	add_to_group('players')
+	#print(passingState)
+	
+	#Utils.timer(2,func (e): passingState.start(),[1])
+	
 	
 func _process(delta):
 	animation_tree.advance(delta*3.5)
@@ -49,7 +61,7 @@ func _physics_process(delta):
 			velocity = direction * SPEED
 		else:
 			velocity = Vector2.ZERO
-#
+
 #	if Input.is_action_just_pressed("jump") and not is_jumping:
 #		jump_start_height = position.y
 #		prints("jump start height:",jump_start_height)
@@ -66,6 +78,8 @@ func _physics_process(delta):
 #			is_jumping = false
 #			can_stop_falling = false
 	move_and_slide()
+#	if has_ring and ring:
+#		ring.position = position
 	
 
 	
