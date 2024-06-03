@@ -19,6 +19,7 @@ const GRAVITY = 500
 var is_jumping = false
 var can_stop_falling = false
 var jump_start_height = 0
+var avoidRadius = 60
 
 func set_property(_color):
 	print(_color)
@@ -45,6 +46,7 @@ func _ready():
 	#print(passingState)
 	
 	#Utils.timer(2,func (e): passingState.start(),[1])
+
 	
 	
 func _process(delta):

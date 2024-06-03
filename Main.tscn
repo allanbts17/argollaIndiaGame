@@ -24,22 +24,34 @@ color = 1
 
 [node name="player2" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0.2, 0, 1, 1)
-position = Vector2(182, 95)
+position = Vector2(170, 31)
 has_ring = true
 
 [node name="player3" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0, 1, 0.223529, 1)
-position = Vector2(379, 216)
+position = Vector2(332, 161)
 teamId = 1
 
 [node name="player4" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0, 1, 0.223529, 1)
-position = Vector2(200.851, 235)
+position = Vector2(194.777, 235)
 teamId = 1
+
+[node name="player7" parent="." instance=ExtResource("1_1d3cn")]
+modulate = Color(0, 1, 0.223529, 1)
+position = Vector2(299.926, 136)
+teamId = 1
+color = 2
+
+[node name="player8" parent="." instance=ExtResource("1_1d3cn")]
+modulate = Color(0, 1, 0.223529, 1)
+position = Vector2(347, 45)
+teamId = 1
+color = 2
 
 [node name="player5" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0.2, 0, 1, 1)
-position = Vector2(95, 55)
+position = Vector2(324, 31)
 color = 1
 
 [node name="player6" parent="." instance=ExtResource("1_1d3cn")]
@@ -48,7 +60,7 @@ position = Vector2(227, 181)
 color = 1
 
 [node name="argolla" type="Area2D" parent="."]
-position = Vector2(182, 95)
+position = Vector2(170, 31)
 scale = Vector2(0.1, 0.1)
 script = ExtResource("4_k4qv5")
 metadata/_edit_group_ = true

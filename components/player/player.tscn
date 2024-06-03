@@ -1,10 +1,10 @@
 [gd_scene load_steps=69 format=3 uid="uid://qcawd6xkb8pl"]
 
 [ext_resource type="Script" path="res://components/player/player.gd" id="1_s1i01"]
-[ext_resource type="Script" path="res://StateMachine.gd" id="2_fvds8"]
+[ext_resource type="Script" path="res://components/StateMachine/StateMachine.gd" id="2_itrxd"]
 [ext_resource type="Script" path="res://components/player/LineFollow.gd" id="2_nsyet"]
-[ext_resource type="Script" path="res://PassingState.gd" id="3_3tm6h"]
 [ext_resource type="Texture2D" uid="uid://gb84slcxcolu" path="res://assets/shadow.png" id="3_7h012"]
+[ext_resource type="Script" path="res://components/StateMachine/PassingState.gd" id="3_fjw4u"]
 [ext_resource type="Script" path="res://components/player/shadow.gd" id="4_rwu5k"]
 [ext_resource type="Texture2D" uid="uid://cwin25otg4m48" path="res://assets/char.png" id="5_ullo6"]
 
@@ -603,10 +603,10 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_s1i01")
 
 [node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("2_fvds8")
+script = ExtResource("2_itrxd")
 
 [node name="PassingState" type="Node2D" parent="StateMachine"]
-script = ExtResource("3_3tm6h")
+script = ExtResource("3_fjw4u")
 
 [node name="LineFollow" type="Node2D" parent="."]
 script = ExtResource("2_nsyet")
@@ -624,7 +624,6 @@ vframes = 12
 frame = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_f3n71")
 
