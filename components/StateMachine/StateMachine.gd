@@ -31,3 +31,6 @@ func end():
 
 func set_state_array(states: Array[StateBase]):
 	self.states = states
+	
+func set_child_states():
+	pass

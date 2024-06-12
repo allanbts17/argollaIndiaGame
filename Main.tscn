@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://qcawd6xkb8pl" path="res://components/player/player.tscn" id="1_1d3cn"]
 [ext_resource type="Script" path="res://Main.gd" id="1_5p8wu"]
 [ext_resource type="PackedScene" uid="uid://2rknmumi8xr8" path="res://components/trackInput/trackInput.tscn" id="1_u73vk"]
-[ext_resource type="Texture2D" uid="uid://b27my1h8dw6dm" path="res://icon.svg" id="4_0sj6x"]
-[ext_resource type="Script" path="res://argolla.gd" id="4_k4qv5"]
+[ext_resource type="Script" path="res://components/argolla/argolla.gd" id="4_v2krx"]
+[ext_resource type="Texture2D" uid="uid://b27my1h8dw6dm" path="res://assets/icon.svg" id="5_0dx46"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xtch"]
 radius = 69.9999
@@ -56,17 +56,17 @@ color = 1
 
 [node name="player6" parent="." instance=ExtResource("1_1d3cn")]
 modulate = Color(0.2, 0, 1, 1)
-position = Vector2(227, 181)
+position = Vector2(372, 19)
 color = 1
 
 [node name="argolla" type="Area2D" parent="."]
 position = Vector2(170, 31)
 scale = Vector2(0.1, 0.1)
-script = ExtResource("4_k4qv5")
+script = ExtResource("4_v2krx")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="argolla"]
-texture = ExtResource("4_0sj6x")
+texture = ExtResource("5_0dx46")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="argolla"]
 light_mask = 2
@@ -79,7 +79,7 @@ scale = Vector2(0.6, 0.6)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ringCatcher1"]
-texture = ExtResource("4_0sj6x")
+texture = ExtResource("5_0dx46")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ringCatcher1"]
 shape = SubResource("RectangleShape2D_0q13m")
@@ -90,7 +90,7 @@ scale = Vector2(0.6, 0.6)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ringCatcher2"]
-texture = ExtResource("4_0sj6x")
+texture = ExtResource("5_0dx46")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ringCatcher2"]
 shape = SubResource("RectangleShape2D_0q13m")

@@ -22,11 +22,17 @@ func _process(delta):
 	if started:
 		var player = master as Player
 		player.avoidRadius
+		var rivalDirections: Array[Vector2] = []
 		for rival in rivals:
 			if player.position.distance_to(rival.position) <= player.avoidRadius:
 				#Mover el jugador
+				rivalDirections.append(rival.position.direction_to(player.position))
 				pass
 		
+		var directionSum: Vector2 = rivalDirections.reduce(func(acum,num): return acum + num,Vector2.ZERO)
+		directionSum = directionSum.normalized()
+		player.direction = directionSum
+		rivalDirections = []
 	pass
 	
 func getRivalList() -> Array[Player]:
